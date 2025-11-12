@@ -50,4 +50,4 @@ jobs:
 
       - name: Build Docker image
 
-        run: docker build -t gameflix-backend .
+        run: docker build -t gameflix-backend . 
