@@ -1,4 +1,4 @@
-# GameFlix CI/CD Setup 🚀
+# GameFlix CI/CD
 
 This is a step by step instructions for the CI/CD setup for springboot/mysql project.
 The workflow ensures push or pull request to the main branch triggers an automated build and Docker image creation.
