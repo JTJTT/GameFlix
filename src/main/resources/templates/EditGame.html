@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Game - GameFlix</title>
+</head>
+<body>
+<h2>Edit Game</h2>
+
+<!-- Error msg -->
+<div th:if="${message}" th:text="${message}" 
+     th:class="${message.contains('successfully') ? 'success-message' : 'error-message'}"></div>
+
+<form th:action="@{/games/edit/{id}(id=${game.gameId})}" method="post">
+    <label>Title:</label>
+    <input type="text" name="title" th:value="${game.title}" required><br><br>
+
+    <label>Description:</label>
+    <textarea name="description" rows="4" cols="50" th:text="${game.description}"></textarea><br><br>
+
+    <label>Genre:</label>
+    <input type="text" name="genre" th:value="${game.genre}" required><br><br>
+
+    <label>Developer:</label>
+    <input type="text" name="developer" th:value="${game.developer}" required><br><br>
+
+    <label>Publisher:</label>
+    <input type="text" name="publisher" th:value="${game.publisher}" required><br><br>
+
+    <label>Release Year:</label>
+    <input type="number" name="releaseYear" th:value="${game.releaseYear}" min="1970" max="2030" required><br><br>
+
+    <label>Price:</label>
+    <input type="number" name="price" th:value="${game.price}" step="0.01" min="0" required><br><br>
+
+    <button type="submit">Update Game</button>
+</form>
+
+<br>
+<a href="/admin/games">Back to Games</a>
+</body>
+</html>

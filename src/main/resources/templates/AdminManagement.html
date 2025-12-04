@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Games - GameFlix</title>
+</head>
+<body>
+<h2>Game Management</h2>
+<a href="/games/add">
+    <button type="button">Add New Game</button>
+</a>
+<br><br>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Genre</th>
+        <th>Developer</th>
+        <th>Price</th>
+        <th>Available</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="game : ${games}">
+        <td th:text="${game.gameId}"></td>
+        <td th:text="${game.title}"></td>
+        <td th:text="${game.genre}"></td>
+        <td th:text="${game.developer}"></td>
+        <td th:text="'$' + ${game.price}"></td>
+        <td th:text="${game.isAvailable ? 'Yes' : 'No'}"></td>
+        <td>
+            <a th:href="@{/games/edit/{id}(id=${game.gameId})}">
+                <button type="button">Edit</button>
+            </a>
+            <form th:action="@{/games/toggle/{id}(id=${game.gameId})}" method="post" style="display:inline;">
+                <button type="submit" th:text="${game.isAvailable ? 'Disable' : 'Enable'}"></button>
+            </form>
+            <form th:action="@{/games/delete/{id}(id=${game.gameId})}" method="post" style="display:inline;" 
+                  onsubmit="return confirm('Are you sure you want to delete this game?')">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<a href="/">Back to Home</a>
+</body>
+</html>
